@@ -1,19 +1,26 @@
 <template>
     <div>
         <div id="sector" v-for="obj in createSectors()"
-             v-bind:style="{ transform: 'rotate('+ obj.sector.grad +'rad)', borderTopColor: obj.sector.bkg }"><p>
-            {{obj.sector.number}}</p></div>
+             v-bind:style="{ transform: 'rotate('+ obj.sector.grad +'rad)', borderTopColor: obj.sector.bkg }">
+            <p>{{obj.sector.number}}</p>
+            <ball>1</ball>
+        </div>
     </div>
 </template>
 
 <script>
+    import ball from "./ball";
+
     export default {
+        component: {
+            ball
+        },
         data() {
             return {
                 numbers: ['0', '32', '15', '19', ' 4', '21', ' 2', '25', '17', '34', ' 6', '27', '13', '36', '11', '30',
                     ' 8', '23', '10', ' 5', '24', '16', '33', ' 1', '20', '14', ' 3', ' 9', '22', '18', '29', ' 7', '28',
                     '12', '35', ' 3', '26'],
-                sectors: []
+                sectors: [],
             }
         },
         methods: {

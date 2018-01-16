@@ -1,31 +1,28 @@
 <template>
+    <div>
         <div id="ball" v-if="grad"></div>
+    </div>
 </template>
 
 <script>
-    import { bus } from './bus.js';
-
-
     export default {
-        data() {
+        data: function() {
             return {
                 grad: false
-
-            }
+            };
         },
-        mounted() {
-                bus.$on('clickEvent', function() {
-                    this.grad = !this.grad
+        created: function() {
+                    this.$root.$on('clickEvent', () => {
+                    this.grad = !this.grad;
                     console.log(this.grad)
-                    return this.grad
-                })
+                });
             }
     }
 </script>
 
 <style scoped>
+
     #ball {
-        margin: 20px 0px 0px 146px;
         width: 7px;
         height: 7px;
         position: absolute;
@@ -33,6 +30,5 @@
         overflow: hidden;
         border: 1px solid black;
         background-color: white;
-
     }
 </style>

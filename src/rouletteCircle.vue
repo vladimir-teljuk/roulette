@@ -1,19 +1,16 @@
 <template>
     <div id="circle">
         <sectors></sectors>
-        <ball></ball>
     </div>
 </template>
 
 <script>
     import sectors from "./Sectors";
-    import ball from "./ball";
 
 
     export default {
         components: {
-            sectors,
-            ball
+            sectors
         }
     }
 </script>
