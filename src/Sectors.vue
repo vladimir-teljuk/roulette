@@ -1,9 +1,10 @@
 <template>
     <div>
-        <div id="sector" v-for="obj in createSectors()"
+        <div id="sector" v-for="(obj, index) in createSectors()"
              v-bind:style="{ transform: 'rotate('+ obj.sector.grad +'rad)', borderTopColor: obj.sector.bkg }">
             <p>{{obj.sector.number}}</p>
-            <ball>1</ball>
+            <ball v-if="index === r"></ball>
+
         </div>
     </div>
 </template>
@@ -12,7 +13,7 @@
     import ball from "./ball";
 
     export default {
-        component: {
+        components: {
             ball
         },
         data() {
@@ -21,7 +22,15 @@
                     ' 8', '23', '10', ' 5', '24', '16', '33', ' 1', '20', '14', ' 3', ' 9', '22', '18', '29', ' 7', '28',
                     '12', '35', ' 3', '26'],
                 sectors: [],
+                r: undefined
             }
+        },
+        created: function () {
+            this.$root.$on('clickEvent', () => {
+                this.r = Math.floor(Math.random() * 36);
+                console.log(this.sectors[this.r]);
+                return this.r
+            });
         },
         methods: {
             createSectors() {
@@ -46,6 +55,7 @@
                 }
                 return this.sectors
             }
+
         }
     }
 
@@ -53,17 +63,19 @@
 
 <style scoped>
 #sector {
-    width: 21.5px;
-    height: 272px;
+    width: 20.5px;
+    height: 270px;
     margin: 0px 137px 0px 137px;
-    border-left: 2.5px solid transparent;
-    border-right: 2.5px solid transparent;
+    border-left: 3px solid transparent;
+    border-right: 3px solid transparent;
     border-top: 30px solid;
     position: absolute;
 
 }
     #sector p {
-        margin-top: -25px;
+        margin: 0;
+        height: 27px;
+        margin-top: -27.5px;
         color: white;
         font-size: small;
         text-align: center;
