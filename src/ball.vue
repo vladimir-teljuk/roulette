@@ -16,7 +16,7 @@
         },
         created: function () {
             this.$root.$on('clickEvent', () => {
-                this.rotate -= 0.3396;//Math.random() * 36 + 20;
+                this.rotate -= Math.random() * 36 + 20;
                 this.angle = (Math.PI * 2) + (this.rotate % (Math.PI * 2));
                 this.$emit('relativeAngle', this.angle);
                 return false;
