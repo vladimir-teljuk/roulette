@@ -1,16 +1,17 @@
 <template>
     <div>
-        <div id="sector" v-for="(obj, index) in createSectors()"
+        <div id="sector" v-for="obj in createSectors()"
              v-bind:style="{ transform: 'rotate('+ obj.sector.grad +'rad)', borderTopColor: obj.sector.bkg }">
             <p>{{obj.sector.number}}</p>
-            <ball v-if="index === r"></ball>
-
         </div>
+        <ball v-on:relativeAngle="selectedSector"></ball>
     </div>
 </template>
 
 <script>
+
     import ball from "./ball";
+
 
     export default {
         components: {
@@ -22,14 +23,14 @@
                     ' 8', '23', '10', ' 5', '24', '16', '33', ' 1', '20', '14', ' 3', ' 9', '22', '18', '29', ' 7', '28',
                     '12', '35', ' 3', '26'],
                 sectors: [],
-                r: undefined
+                r: undefined,
+                a: undefined
+
             }
         },
         created: function () {
             this.$root.$on('clickEvent', () => {
                 this.r = Math.floor(Math.random() * 36);
-                console.log(this.sectors[this.r]);
-                return this.r
             });
         },
         methods: {
@@ -48,12 +49,24 @@
                         sector: {
                             'number': this.numbers[i],
                             'grad': grad,
-                            'bkg': color
+                            'bkg': color,
                         }
                     }
                     grad += 0.1698;
                 }
                 return this.sectors
+            },
+            selectedSector(a) {
+                this.a = a;
+                var diff =  0.0849;
+                console.log('rotateBall = ' + this.a);
+                for (var i = 0; i < 36; i++) {
+                    if ((this.sectors[i].sector.grad - diff) < this.a &&
+                        this.a < (this.sectors[i].sector.grad +diff)) {
+                        console.log(this.sectors[i]);
+                    }
+                }
+
             }
 
         }
@@ -63,19 +76,18 @@
 
 <style scoped>
 #sector {
-    width: 20.5px;
+    width: 19.5px;
     height: 270px;
     margin: 0px 137px 0px 137px;
     border-left: 3px solid transparent;
     border-right: 3px solid transparent;
     border-top: 30px solid;
     position: absolute;
-
+    opacity: 0.99;
 }
     #sector p {
-        margin: 0;
-        height: 27px;
-        margin-top: -27.5px;
+        margin: -30px 0 0 0;
+        height: 15px;
         color: white;
         font-size: small;
         text-align: center;
