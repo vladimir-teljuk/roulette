@@ -56,16 +56,8 @@
                 }
                 return this.sectors
             },
-            selectedSector(a) {
-                this.a = a;
-                var diff =  0.0849;
-                console.log('rotateBall = ' + this.a);
-                for (var i = 0; i < 36; i++) {
-                    if ((this.sectors[i].sector.grad - diff) < this.a &&
-                        this.a < (this.sectors[i].sector.grad +diff)) {
-                        console.log(this.sectors[i]);
-                    }
-                }
+            selectedSector(b) {
+                console.log(this.sectors[b]);
 
             }
 

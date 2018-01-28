@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div id="ball-container" v-bind:style="{ transform: 'rotate('+ rotate +'rad)'}">
+        <div id="ball-container" v-bind:style="{ transform: 'rotate('+ rotate +'rad)', transitionDuration: sec + 's' }">
             <div id="ball"></div>
         </div>
     </div>
@@ -11,20 +11,25 @@
         data() {
             return {
                 rotate: 0,
-                angle: 0
+                angle: 0,
+                sector: 0,
+                sec: 0
             }
         },
         created: function () {
             this.$root.$on('clickEvent', () => {
-                this.rotate -= Math.random() * 36 + 20;
-                this.angle = (Math.PI * 2) + (this.rotate % (Math.PI * 2));
-                this.$emit('relativeAngle', this.angle);
+                    this.rotate = 0;
+                    this.sec = 0;
+                    setTimeout(() => {
+                        this.sec = 7;
+                        this.sector = Math.floor(Math.random() * 36);
+                        this.rotate -= (2 * Math.PI * Math.floor(Math.random() * 15 + 10) - this.sector * 0.1698);
+                        this.$emit('relativeAngle', this.sector);
+                    }, 100);
                 return false;
             });
         },
-        methods: {
-
-        }
+        methods: {}
     }
 </script>
 
@@ -36,9 +41,9 @@
         left: 140px;
         width: 20px;
         height: 270px;
-        transition-duration: 7s;
         transition-timing-function: ease-in-out;
     }
+
     #ball {
         margin: 0px 5px 0 5px;
         width: 7px;
