@@ -20,18 +20,15 @@
         data() {
             return {
                 numbers: ['0', '32', '15', '19', ' 4', '21', ' 2', '25', '17', '34', ' 6', '27', '13', '36', '11', '30',
-                    ' 8', '23', '10', ' 5', '24', '16', '33', ' 1', '20', '14', ' 3', ' 9', '22', '18', '29', ' 7', '28',
+                    ' 8', '23', '10', ' 5', '24', '16', '33', ' 1', '20', '14', ' 31', ' 9', '22', '18', '29', ' 7', '28',
                     '12', '35', ' 3', '26'],
                 sectors: [],
-                r: undefined,
                 a: undefined
 
             }
         },
-        created: function () {
-            this.$root.$on('clickEvent', () => {
-                this.r = Math.floor(Math.random() * 36);
-            });
+        mounted() {
+            this.$root.$emit('sectorsForGrid', this.sectors);
         },
         methods: {
             createSectors() {
@@ -41,9 +38,9 @@
                     if (i === 0) {
                         color = 'green';
                     } else if ((i % 2) === 0) {
-                        color = 'red';
-                    } else {
                         color = 'black';
+                    } else {
+                        color = 'red';
                     }
                     this.sectors[i] = {
                         sector: {
@@ -51,7 +48,7 @@
                             'grad': grad,
                             'bkg': color,
                         }
-                    }
+                    };
                     grad += 0.1698;
                 }
                 return this.sectors

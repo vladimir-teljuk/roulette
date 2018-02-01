@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="head">
         {{d}}
     </div>
 </template>
@@ -15,11 +15,11 @@
 </script>
 
 <style scoped>
-    div {
+    #head {
         width: 7%;
-        margin: 20px auto 0 auto;
+        margin: 0px auto 0 auto;
         font: 150% sans-serif;
-        color: #608410;
-
+        color: #477625;
+        padding-top: 20px;
     }
 </style>

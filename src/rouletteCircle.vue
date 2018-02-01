@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <sectors id="circle" v-bind:style="{ transform: 'rotate('+ rotateCircle +'rad)' }"></sectors>
+    <div id="circle" v-bind:style="{ transform: 'rotate('+ rotateCircle +'rad)' }">
+        <sectors></sectors>
     </div>
 </template>
 
@@ -21,8 +21,6 @@
         created: function () {
             this.$root.$on('clickEvent', () => {
                 this.rotateCircle += Math.random() * 17 + 9.71;
-                var a = this.rotateCircle % (Math.PI * 2);
-                //console.log('rotateCircle = ' + a);
                 return false;
             });
         },
@@ -34,7 +32,9 @@
 
 <style scoped>
     #circle {
-        margin: 20px;
+        position: relative;
+        top: 100px;
+        left: 30px;
         width: 300px;
         height: 300px;
         border-radius: 300px;

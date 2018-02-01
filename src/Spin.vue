@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <button id="spin" v-on:click="$root.$emit('clickEvent')">Spin</button>
+    <div id="spin">
+        <button v-on:click="$root.$emit('clickEvent')">Spin</button>
     </div>
     
 </template>
@@ -14,8 +14,11 @@
 
 <style scoped>
     #spin {
-        margin-top: 10px;
-        margin-left: 20px;
+        position: relative;
+        top: -300px;
+        left: 100px;
+        width: 40px;
+        height: 18px;
     }
 
 </style>
