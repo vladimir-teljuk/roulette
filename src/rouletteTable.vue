@@ -6,7 +6,6 @@
         <dozens></dozens>
         <equal-chances></equal-chances>
     </div>
-    
 </template>
 
 <script>
@@ -14,7 +13,8 @@
     import zeroOnTable from "./zeroOnTable";
     import Columns from "./Columns";
     import Dozens from "./Dozens";
-    import EqualChances from "./EqualChances"
+    import EqualChances from "./EqualChances";
+
 
     export default {
         components: {
@@ -23,7 +23,6 @@
             Columns,
             Dozens,
             EqualChances
-
         }
 
     }
@@ -31,11 +30,10 @@
 
 <style scoped>
     #roulette-table {
-        width: 218px;
-        height: 488px;
+        width: 233px;
+        height: 490px;
         position: relative;
         left: 430px;
         top: -250px;
-
     }
 </style>

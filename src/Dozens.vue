@@ -1,7 +1,7 @@
 <template>
     <div id="dozens">
-        <div id="dozen" v-for="dozen in dozens">
-            <p>{{dozen}}<br><br>12</p>
+        <div id="dozen" v-for="(dozen, index) in dozens" @click="placeBet(index)">
+            <p>{{dozen.dozen.number}}<br><br>12</p>
         </div>
     </div>
 </template>
@@ -10,7 +10,25 @@
     export default {
         data() {
             return {
-                dozens: ['1st','2nd','3rd']
+                labels: ['1st','2nd','3rd'],
+                dozens: []
+            }
+        },
+        created() {
+            for (var i = 0; i <= 2; i++) {
+                this.dozens[i] = {
+                    dozen: {
+                        'number': this.labels[i],
+                        'selectedDozen': false
+                    }
+                }
+            }
+        },
+        methods: {
+            placeBet(i) {
+                event.currentTarget.style.backgroundColor = 'blue';
+                this.dozens[i].dozen.selectedDozen = true;
+                console.log(this.dozens[i].dozen);
             }
         }
     }

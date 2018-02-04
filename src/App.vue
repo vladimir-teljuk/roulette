@@ -13,14 +13,15 @@
     import rouletteCircle from "./rouletteCircle";
     import meHead from "./meHead";
     import spin from "./Spin";
-    import rouletteTable from "./rouletteTable"
+    import rouletteTable from "./rouletteTable";
 
     export default {
         components: {
             rouletteCircle,
             meHead,
             spin,
-            rouletteTable
+            rouletteTable,
+
         }
     }
 </script>

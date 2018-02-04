@@ -1,12 +1,28 @@
 <template>
-    <div id="zero">
-        <p>0</p>
+    <div id="zero" @click="placeBet()">
+        <p>{{zero.text}}</p>
     </div>
 </template>
 
 <script>
     export default {
-        name: "zero-on-table"
+        data() {
+            return {
+                zero: {
+                    id: 'zero',
+                    text: '0',
+                    selectedZero: false
+                }
+            }
+        },
+        methods: {
+            placeBet() {
+                event.currentTarget.style.backgroundColor = 'blue';
+                this.zero.selectedZero = true;
+                console.log(this.zero);
+            }
+        }
+
     }
 </script>
 
@@ -19,6 +35,7 @@
         border-radius: 20px 20px 0 0;
 
     }
+
     #zero p {
         width: 46px;
         height: auto;

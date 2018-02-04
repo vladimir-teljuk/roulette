@@ -1,19 +1,32 @@
 <template>
     <div id="equal-chances">
-        <div class=equal-chance id="1to18"><p>1<br>TO<br>18</p></div>
-        <div class=equal-chance id="even"><p>E<br>V<br>E<br>N</p></div>
-        <div class=equal-chance id="red"><p></p></div>
-        <div class=equal-chance id="black"><p></p></div>
-        <div class=equal-chance id="odd"><p>O<br>D<br>D</p></div>
-        <div class=equal-chance id="19to36"><p>19<br>TO<br>36</p></div>
-
+        <div class=equal-chance v-for="(equalChance, index) in equalChances" @click="placeBet(index)"
+             v-bind:id="equalChance.equalChance.id"><p v-html="equalChance.equalChance.text"></p></div>
     </div>
 </template>
 
 <script>
     export default {
         data() {
-            return {}
+            return {
+                equalChances: []
+            }
+        },
+        created() {
+            this.equalChances[0] = { equalChance: { id: '1to18', text: '1<br>TO<br>18', selectedEqual: false } };
+            this.equalChances[1] = { equalChance: { id: 'even', text: 'E<br>V<br>E<br>N', selectedEqual: false } };
+            this.equalChances[2] = { equalChance: { id: 'red', text: '', selectedEqual: false } };
+            this.equalChances[3] = { equalChance: { id: 'black', text: '', selectedEqual: false } };
+            this.equalChances[4] = { equalChance: { id: 'odd', text: 'O<br>D<br>D', selectedEqual: false } };
+            this.equalChances[5] = { equalChance: { id: 'even', text: 'E<br>V<br>E<br>N', selectedEqual: false  } };
+
+        },
+        methods: {
+            placeBet(i) {
+                event.currentTarget.style.backgroundColor = 'blue';
+                this.equalChances[i].equalChance.selectedEqual = true;
+                console.log(this.equalChances[i].equalChance);
+            }
         }
     }
 </script>
@@ -40,9 +53,10 @@
         position: relative;
         top: 10px;
     }
+
     #even p {
         top: 2px;
-      }
+    }
 
     #red p, #black p {
         top: 13px;
@@ -52,6 +66,7 @@
         border-radius: 10px/20px;
         background-color: black;
     }
+
     #red p {
         background-color: red;
     }

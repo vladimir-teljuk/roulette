@@ -1,8 +1,8 @@
 <template>
-        <div id="inner-section">
-            <div id="cell" v-for="obj in cells" >
-                <p v-bind:style="{ backgroundColor: obj.cell.color }">{{ obj.cell.number }}</p>
-            </div>
+    <div id="inner-section">
+        <div id="cell" v-for="(obj, index) in cells" @click="placeBet(index)">
+            <p v-bind:style="{ backgroundColor: obj.cell.color }">{{ obj.cell.number }}</p>
+        </div>
     </div>
 </template>
 
@@ -19,17 +19,22 @@
                     this.cells[i - 1] = {
                         cell: {
                             'number': sectors[i].sector.number,
-                            'color': sectors[i].sector.bkg
+                            'color': sectors[i].sector.bkg,
+                            'selectedNumber': false
                         }
                     }
                 }
-                this.cells.sort(function(a, b) {
+                this.cells.sort(function (a, b) {
                     return a.cell.number - b.cell.number;
                 });
-                console.log(this.cells);
             });
         },
         methods: {
+            placeBet(i) {
+                event.currentTarget.style.backgroundColor = 'blue';
+                this.cells[i].cell.selectedNumber = true;
+                console.log(this.cells[i].cell);
+            }
 
         }
 
@@ -47,6 +52,10 @@
         height: 32px;
         border: yellow 1px solid;
         display: inline-block;
+    }
+
+    #cell:hover {
+        cursor: pointer;
     }
 
     #cell p {
