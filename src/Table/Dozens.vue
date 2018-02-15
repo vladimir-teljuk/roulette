@@ -1,7 +1,7 @@
 <template>
-    <div id="columns">
-        <div id="column" v-for="(column, index) in columns" @click="placeBet(index)">
-            <p>{{column.column.number}}</p>
+    <div id="dozens">
+        <div id="dozen" v-for="(dozen, index) in dozens" @click="placeBet(index)">
+            <p>{{dozen.dozen.number}}<br><br>12</p>
         </div>
     </div>
 </template>
@@ -11,15 +11,15 @@
         data() {
             return {
                 labels: ['1st','2nd','3rd'],
-                columns: []
+                dozens: []
             }
         },
         created() {
             for (var i = 0; i <= 2; i++) {
-                this.columns[i] = {
-                    column: {
+                this.dozens[i] = {
+                    dozen: {
                         'number': this.labels[i],
-                        'selectedColumn': false
+                        'selectedDozen': false
                     }
                 }
             }
@@ -27,32 +27,31 @@
         methods: {
             placeBet(i) {
                 event.currentTarget.style.backgroundColor = 'blue';
-                this.columns[i].column.selectedColumn = true;
-                console.log(this.columns[i].column);
+                this.dozens[i].dozen.selectedDozen = true;
+                console.log(this.dozens[i].dozen);
             }
         }
-
     }
 </script>
 
 <style scoped>
-    #columns {
-        position: relative;
+    #dozens {
+        margin-left: 10px;
+        display: inline-block;
+        width: 38px;
+        vertical-align: bottom;
     }
-
-    #column {
-        margin-top: 10px;
-        width: 48px;
-        height: 32px;
+    #dozen {
+        height: 134px;
+        width: 35px;
         border: yellow 1px solid;
         display: inline-block;
     }
 
-    #column p {
+    #dozen p {
         text-align: center;
         position: relative;
-        top: 7px;
+        top: 40px;
         color: white;
     }
-
 </style>

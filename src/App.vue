@@ -4,24 +4,23 @@
         <div id="content">
             <roulette-circle></roulette-circle>
             <roulette-table></roulette-table>
-            <spin></spin>
+            <bets-container></bets-container>
         </div>
     </div>
 </template>
 
 <script>
-    import rouletteCircle from "./rouletteCircle";
+    import rouletteCircle from "./Circle/rouletteCircle";
     import meHead from "./meHead";
-    import spin from "./Spin";
-    import rouletteTable from "./rouletteTable";
+    import rouletteTable from "./Table/rouletteTable";
+    import BetsContainer from "./Place A Bet/BetsContainer"
 
     export default {
         components: {
             rouletteCircle,
             meHead,
-            spin,
+            BetsContainer,
             rouletteTable,
-
         }
     }
 </script>

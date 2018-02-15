@@ -33,11 +33,9 @@
 
 <style scoped>
     #equal-chances {
-        position: relative;
-        top: -858px;
-        left: 196px;
-        width: 35px;
-        height: 406px;
+        display: inline-block;
+        width: 38px;
+        vertical-align: bottom;
     }
 
     .equal-chance {
